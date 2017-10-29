@@ -48,6 +48,6 @@ exports.sendRecording = (req, res) => {
   form.on('fileBegin', (name, file) => {
     const [fname, extension] = file.name.split('.')
     const token = crypto.randomBytes(16).toString('hex');
-    file.path = path.join('./uploads', `${name}.${extension}`)
+    file.path = path.join('./uploads', `${fname}.${extension}`)
   });
 };
