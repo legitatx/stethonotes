@@ -34,7 +34,7 @@ exports.sendRecording = (req, res) => {
             }
           });
 
-          service.sendFile(files[0].path, (error) => {
+          service.sendFile(files[''].path, (error) => {
             if (!error) {
               res.locals.logger.info('Successfully sent file to Azure!')
             } else {
