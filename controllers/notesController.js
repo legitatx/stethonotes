@@ -10,7 +10,7 @@ exports.init = (req, res) => {
 };
 
 exports.sendRecording = (req, res) => {
-  const buffer = new Buffer(req.body.blob, 'base64');
+  const buffer = new Buffer(`${req.body.blob}`, 'base64');
   const token = crypto.randomBytes(64).toString('hex');
   fs.writeFile(`temp/recording-${token}.wav`, buffer, (error) => {
     if (error) {
