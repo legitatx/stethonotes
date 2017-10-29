@@ -26,27 +26,31 @@ class Recorder extends Component {
 
   render() {
     return (
-      <div>
+      <div className='recorder'>
         <ReactMic
-          classNaame='recorder'
+          className='recorder-mic'
           record={this.state.record}
-          backgroundColor='#00bcd4'
+          backgroundColor='#fff'
           visualSetting='sinewave'
           onStart={this.onStart}
           onStop={this.onStop}
-          strokeColor='#000'
+          strokeColor='#fff'
         />
         {!this.state.record ? (
-          <button onClick={this.startRecording}>Start</button>
+          <div className='recorder-btn play' onClick={this.startRecording}>
+            Start
+          </div>
         ) : (
-          <button onClick={this.stopRecording}>Send</button>
+          <div className='recorder-btn stop' onClick={this.stopRecording}>
+            Record
+          </div>
         )}
 
-        <audio
+        {/**<audio
           ref='audioSource'
           controls='controls'
           src={this.state.blobObject}
-        />
+        />*/}
       </div>
     );
   }

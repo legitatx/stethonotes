@@ -4,8 +4,48 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.App {
-  margin: 30px;
+.recorder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.recorder .recorder-mic {
+  display: none;
+}
+
+.recorder .recorder-btn {
+  width: 400px;
+  height: 400px;
+  line-height: 400px;
+  color: #fff;
+  background-color: red;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.recorder .recorder-btn.play {
+  animation-duration: 1.2s;
+  animation-name: moving-btn;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes moving-btn {
+  from {
+    transform: scale(0.875);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.recorder .recorder-btn.stop {
+  background-color: grey;
 }
 
 .user-card {

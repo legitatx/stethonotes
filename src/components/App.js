@@ -52,20 +52,7 @@ class App extends Component {
         </Drawer>
         <div>
           <UserOverview name='Tay Johnson' concern='Headache' />
-          <div>
-            <Tabs onChange={this.handleChange} value={this.state.tabIndex}>
-              <Tab label='Record' value={0} />
-              <Tab label='Overview' value={1} />
-            </Tabs>
-            <SwipeableViews
-              index={this.state.tabIndex}
-              onChange={this.handleChange}
-            >
-              <div>
-                <Recorder />
-              </div>
-            </SwipeableViews>
-          </div>
+          <Recorder />
         </div>
       </div>
     );
