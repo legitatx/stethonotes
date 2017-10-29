@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import Recorder from './Recorder';
 
 class App extends Component {
   render() {
-    return <div className='App'>aaa</div>;
+    return (
+      <div className='App'>
+        <Recorder />
+      </div>
+    );
   }
 }
 
