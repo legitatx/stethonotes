@@ -1,4 +1,5 @@
 const app = require('./app');
+const winston = require('winston');
 require('dotenv').config({path: 'variables.env'});
 
 app.set('port', process.env.PORT || 8080);
