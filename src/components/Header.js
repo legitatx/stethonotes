@@ -34,20 +34,6 @@ const Header = props => (
         />
       </div>
     }
-    iconElementRight={
-      <div style={{ marginTop: '.7em' }}>
-        <FlatButton
-          label='Report'
-          style={styles.grey}
-          containerElement={<Link to='/patients' />}
-        />
-        <FlatButton
-          label='About'
-          style={styles.grey}
-          containerElement={<Link to='/about' />}
-        />
-      </div>
-    }
     onLeftIconButtonTouchTap={props.toggleDrawer}
   />
 );
