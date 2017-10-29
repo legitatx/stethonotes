@@ -12,7 +12,7 @@ exports.init = (req, res) => {
 exports.sendRecording = (req, res) => {
   const buffer = new Buffer(req.body.blob, 'base64');
   const token = crypto.randomBytes(64).toString('hex');
-  fs.writeFile(`emp/recording-${token}.wav`, buffer, (error) => {
+  fs.writeFile(`temp/recording-${token}.wav`, buffer, (error) => {
     if (error) {
       res.json({'status': 500, 'error': error})
       res.logger.error(`An error occured while attempting to decode a blob: ${error}`);
