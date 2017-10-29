@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { ReactMic } from 'react-mic';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Recorder extends Component {
   state = {
     record: false,
     blobObject: null
   };
-
   startRecording = () => {
     this.setState({ record: true });
   };
@@ -21,43 +22,66 @@ class Recorder extends Component {
 
   onStop = recordedBlob => {
     this.setState({ blobObject: recordedBlob.blobURL });
-    this.blobToBase64(recordedBlob.blob);
+    // this.blobToBase64(recordedBlob.blob, async function(base64) {
+    //   var update = JSON.stringify({ blob: base64 });
+    //   console.log(update);
+    //   try {
+    //     axios.post('https://api.stethonotes.tech/recording', {
+    //       blob: base64
+    //     });
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // });
   };
 
-  blobToBase64(blob) {
-    const promise = new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onload = () => {
-        if (!!reader.result) {
-          resolve(reader.result);
-        } else {
-          reject(Error('Failed converting to base64!'));
-        }
-      };
-    });
+  // blobToBase64 = (blob, cb) => {
+  //   var reader = new FileReader();
+  //   reader.onload = function() {
+  //     var dataUrl = reader.result;
+  //     var base64 = dataUrl.split(',')[1];
+  //     cb(base64);
+  //   };
+  //   reader.readAsDataURL(blob);
+  // };
 
-    promise
-      .then(res => {
-        this.sendRecording(res);
-      })
-      .catch(err => console.log(err));
-  }
+  // blobToBase64(blob) {
+  //   const promise = new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(blob);
+  //     reader.onload = () => {
+  //       if (!!reader.result) {
+  //         resolve(reader.result);
+  //       } else {
+  //         reject(Error('Failed converting to base64!'));
+  //       }
+  //     };
+  //   });
 
-  async sendRecording(base64) {
-    try {
-      const res = await fetch('https://api.stethonotes.tech/recording', {
-        method: 'POST',
-        body: JSON.stringify({
-          blob: base64
-        })
-      });
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  //   promise
+  //     .then(res => {
+  //       this.sendRecording(res);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
+  // async sendRecording(base64) {
+  //   try {
+  //     const res = await fetch('https://api.stethonotes.tech/recording', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         blob: base64
+  //       })
+  //     });
+  //     const data = await res.json();
+  //     // let info = ctx.baseAudioContext
+  //     //   .decodeAudioData(data)
+  //     //   .then(res => console.log(res));
+  //     console.log(data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   render() {
     return (
@@ -78,7 +102,7 @@ class Recorder extends Component {
           </div>
         ) : (
           <div className='recorder-btn stop' onClick={this.stopRecording}>
-            Record
+            Stop
           </div>
         )}
 
@@ -86,6 +110,13 @@ class Recorder extends Component {
           ref='audioSource'
           controls='controls'
           src={this.state.blobObject}
+        />
+        <RaisedButton
+          style={{ marginTop: '2em' }}
+          disabled={!this.state.blobObject}
+          label='Send To Process'
+          primary={true}
+          containerElement={<Link to='/patient-overview' />}
         />
       </div>
     );

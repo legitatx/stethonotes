@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { grey700 } from 'material-ui/styles/colors';
+import axios from 'axios';
 import UserOverview from './UserOverview';
 import Recorder from './Recorder';
 import Header from './Header';
@@ -18,7 +19,8 @@ class App extends Component {
   state = {
     open: false,
     tabIndex: 0,
-    users: data
+    users: data,
+    data_uri: null
   };
 
   toggleDrawer = () => {
@@ -27,6 +29,37 @@ class App extends Component {
 
   handleChange = value => {
     this.setState({ tabIndex: value });
+  };
+
+  handleFile = e => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    reader.onload = upload => {
+      this.setState({
+        data_uri: upload.target.result,
+        filename: file.name,
+        filetype: file.type
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(e.target);
+    axios
+      .post('https://api.stethonotes.tech/recording', {
+        data_uri: this.state.data_uri,
+        filename: this.state.filename,
+        filetype: this.state.filetype
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -51,7 +84,7 @@ class App extends Component {
             />
           ))}
         </Drawer>
-        <div>
+        <div className='flexer'>
           <UserOverview name='Tay Johnson' concern='Headache' />
           <Recorder />
         </div>
