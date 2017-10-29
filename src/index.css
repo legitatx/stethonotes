@@ -4,6 +4,25 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-page h1 {
+  text-align: center;
+  margin-top: calc(50vh - 3rem);
+  font-size: 4rem;
+}
+
+@media (max-width: 320px) {
+  .landing-page h1 {
+    font-size: 1.2rem;
+    margin-top: calc(50vh - 5rem);
+  }
+}
+
 .recorder {
   display: flex;
   flex-direction: column;

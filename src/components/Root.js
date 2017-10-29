@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './App';
+import About from './About';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -10,7 +11,8 @@ const Root = ({ store }) => (
       <Router>
         <div>
           <Switch>
-            <Route path='/patient' component={App} />
+            <Route exact path='/' component={About} />
+            <Route path='/patients' component={App} />
           </Switch>
         </div>
       </Router>
