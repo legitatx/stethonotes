@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import { Tabs, Tab } from 'material-ui/Tabs';
+import SwipeableViews from 'react-swipeable-views';
 import UserOverview from './UserOverview';
+import Recorder from './Recorder';
 import { data } from '../mock.js';
 
 const UserMenuItem = ({ firstName, lastName }) => (
@@ -14,11 +17,16 @@ const UserMenuItem = ({ firstName, lastName }) => (
 class App extends Component {
   state = {
     open: false,
+    tabIndex: 0,
     users: data
   };
 
   toggleDrawer = () => {
     this.setState({ open: !this.state.open });
+  };
+
+  handleChange = value => {
+    this.setState({ tabIndex: value });
   };
 
   render() {
@@ -44,6 +52,20 @@ class App extends Component {
         </Drawer>
         <div>
           <UserOverview name='Tay Johnson' concern='Headache' />
+          <div>
+            <Tabs onChange={this.handleChange} value={this.state.tabIndex}>
+              <Tab label='Record' value={0} />
+              <Tab label='Overview' value={1} />
+            </Tabs>
+            <SwipeableViews
+              index={this.state.tabIndex}
+              onChange={this.handleChange}
+            >
+              <div>
+                <Recorder />
+              </div>
+            </SwipeableViews>
+          </div>
         </div>
       </div>
     );
