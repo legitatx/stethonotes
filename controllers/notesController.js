@@ -29,7 +29,7 @@ exports.sendRecording = (req, res) => {
           res.locals.logger.info('Starting voice recognition service...');
 
           service.on('recognition', (eventt) => {
-            if (event.RecognitionStatus == 'Success') {
+            if (eventt.RecognitionStatus == 'Success') {
               res.locals.logger.info(`Data returned: ${eventt}`)
             }
           });
