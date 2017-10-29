@@ -15,7 +15,7 @@ exports.sendRecording = (req, res) => {
   const form = new formidable.IncomingForm()
   form.multiples = false;
   form.keepExtensions = true;
-  form.uploadDir = '/uploads';
+  form.uploadDir = 'uploads';
   form.parse(req, (error, fields, files) => {
     if (error) {
       res.json({'status': 500, 'error': error});
@@ -48,6 +48,6 @@ exports.sendRecording = (req, res) => {
   form.on('fileBegin', (name, file) => {
     const [fname, extension] = file.name.split('.')
     const token = crypto.randomBytes(16).toString('hex');
-    file.path = path.join('/uploads', `${name}-${token}.${extension}`)
+    file.path = path.join('uploads', `${name}.${extension}`)
   });
 };
