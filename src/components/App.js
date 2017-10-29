@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import NavigationIcon from 'material-ui/svg-icons/navigation/menu';
 import { grey700 } from 'material-ui/styles/colors';
+import FlatButton from 'material-ui/FlatButton';
 import UserOverview from './UserOverview';
 import Recorder from './Recorder';
 import { data } from '../mock.js';
@@ -24,6 +26,9 @@ const styles = {
   logo: {
     width: 200,
     height: 50
+  },
+  grey: {
+    color: grey700
   }
 };
 
@@ -54,6 +59,20 @@ class App extends Component {
                 src={process.env.PUBLIC_URL + '/logo.png'}
                 alt='logo'
                 style={styles.logo}
+              />
+            </div>
+          }
+          iconElementRight={
+            <div style={{ marginTop: '.7em' }}>
+              <FlatButton
+                label='Report'
+                style={styles.grey}
+                containerElement={<Link to='/report' />}
+              />
+              <FlatButton
+                label='About'
+                style={styles.grey}
+                containerElement={<Link to='/about' />}
               />
             </div>
           }
