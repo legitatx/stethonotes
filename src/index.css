@@ -99,3 +99,16 @@ body {
   font-weight: bold;
   border-bottom: 3px solid red;
 }
+
+.message-container {
+  min-width: 80vw;
+}
+
+.message-container form {
+  display: flex;
+  align-items: center;
+}
+
+.message-container form input {
+  display: block;
+}
