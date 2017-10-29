@@ -18,11 +18,31 @@ exports.sendRecording = (req, res) => {
   form.uploadDir = '/uploads';
   form.parse(req, (error, fields, files) => {
     if (error) {
-      res.json({'status': 500, 'error': error})
-      res.logger.error(`An error occured while attempting to upload a file: ${error}`);
+      res.json({'status': 500, 'error': error});
+      res.locals.logger.error(`An error occured while attempting to upload a file: ${error}`);
     } else {
-      res.json({'status': 204});
-      res.logger.info('Successfully uploaded file!');
+      recognition.start((error, service) => {
+        if (error) {
+          res.json({'status': 500, 'error': error});
+          res.locals.logger.error(`An error occured while attempting to start voice recognition service: ${error}`);
+        } else {
+          res.locals.logger.info('Starting voice recognition service...');
+
+          service.on('recognition', (eventt) => {
+            if (event.RecognitionStatus == 'Success') {
+              res.locals.logger.info(`Data returned: ${eventt}`)
+            }
+          });
+
+          service.sendFile(files[0].path, (error) => {
+            if (!error) {
+              res.locals.logger.info('Successfully sent file to Azure!')
+            } else {
+              res.local.logger.error(`An error occured while attempting to send file to Azure: ${error}`)
+            }
+          });
+        }
+      });
     }
   });
   form.on('fileBegin', (name, file) => {
