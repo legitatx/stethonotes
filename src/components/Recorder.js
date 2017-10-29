@@ -21,8 +21,24 @@ class Recorder extends Component {
 
   onStop = recordedBlob => {
     this.setState({ blobObject: recordedBlob.blobURL });
-    console.log(recordedBlob);
+    this.blobToBase64(recordedBlob.blob);
   };
+
+  blobToBase64(blob) {
+    const promise = new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onload = () => {
+        if (!!reader.result) {
+          resolve(reader.result);
+        } else {
+          reject(Error('Failed converting to base64!'));
+        }
+      };
+    });
+
+    promise.then(res => console.log(res)).catch(err => console.log(err));
+  }
 
   render() {
     return (
