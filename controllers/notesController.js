@@ -26,8 +26,8 @@ exports.sendRecording = (req, res) => {
     }
   });
   form.on('fileBegin', (name, file) => {
-    const [name, extension] = file.name.split('.')
+    const [fname, extension] = file.name.split('.')
     const token = crypto.randomBytes(16).toString('hex');
     file.path = path.join(uploadDir, `${name}-${token}.${extension}`)
-  })
+  });
 };
