@@ -30,7 +30,7 @@ exports.sendRecording = (req, res) => {
 
           service.on('recognition', (eventt) => {
             if (eventt.RecognitionStatus == 'Success') {
-              res.locals.logger.info(`Data returned: ${eventt}`)
+              res.locals.logger.info(`Data returned: ${JSON.parse(eventt)}`)
             }
           });
 
