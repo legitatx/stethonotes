@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 import Header from './Header';
 
 const About = () => (
@@ -14,6 +16,11 @@ const About = () => (
     <h4 style={{ color: 'rgba(0,0,0,0.8)', marginTop: '0.2em' }}>
       Susan Hingle, MD
     </h4>
+    <RaisedButton
+      label='Click to See Demo'
+      primary={true}
+      containerElement={<Link to='/patients' />}
+    />
   </div>
 );
 
