@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import SwipeableViews from 'react-swipeable-views';
+import NavigationIcon from 'material-ui/svg-icons/navigation/menu';
+import { grey700 } from 'material-ui/styles/colors';
 import UserOverview from './UserOverview';
 import Recorder from './Recorder';
 import { data } from '../mock.js';
@@ -13,6 +13,19 @@ const UserMenuItem = ({ firstName, lastName }) => (
     {firstName} {lastName}
   </MenuItem>
 );
+
+const styles = {
+  navIcon: {
+    width: 30,
+    height: 30,
+    marginRight: '.4em',
+    color: grey700
+  },
+  logo: {
+    width: 200,
+    height: 50
+  }
+};
 
 class App extends Component {
   state = {
@@ -33,7 +46,17 @@ class App extends Component {
     return (
       <div>
         <AppBar
-          title='Stethnotes'
+          style={{ backgroundColor: '#fff' }}
+          iconElementLeft={
+            <div style={styles.align}>
+              <NavigationIcon style={styles.navIcon} />
+              <img
+                src={process.env.PUBLIC_URL + '/logo.png'}
+                alt='logo'
+                style={styles.logo}
+              />
+            </div>
+          }
           onLeftIconButtonTouchTap={this.toggleDrawer}
         />
         <Drawer
@@ -41,7 +64,11 @@ class App extends Component {
           docked={false}
           onRequestChange={open => this.setState({ open })}
         >
-          <AppBar title='Patients' iconElementLeft={<span />} />
+          <AppBar
+            title={<span style={{ color: grey700 }}>Patients</span>}
+            style={{ backgroundColor: '#fff' }}
+            iconElementLeft={<span />}
+          />
           {this.state.users.map(user => (
             <UserMenuItem
               key={user.id}
