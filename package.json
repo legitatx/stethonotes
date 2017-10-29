@@ -1,0 +1,31 @@
+{
+  "name": "stethonotes",
+  "version": "1.0.0",
+  "description": "Stethnotes API.",
+  "scripts": {
+    "development": "nodemon start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryandonaldson/stethonotes.git"
+  },
+  "keywords": [
+    "stethonotes"
+  ],
+  "author": "Ryan Donaldson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryandonaldson/stethonotes/issues"
+  },
+  "homepage": "https://github.com/ryandonaldson/stethonotes#readme",
+  "dependencies": {
+    "axios": "^0.17.0",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
