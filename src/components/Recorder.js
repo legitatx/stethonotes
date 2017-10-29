@@ -35,6 +35,7 @@ class Recorder extends Component {
           onStart={this.onStart}
           onStop={this.onStop}
           strokeColor='#fff'
+          mimeType='audio/wav;codecs=opus'
         />
         {!this.state.record ? (
           <div className='recorder-btn play' onClick={this.startRecording}>
@@ -46,11 +47,11 @@ class Recorder extends Component {
           </div>
         )}
 
-        {/**<audio
+        <audio
           ref='audioSource'
           controls='controls'
           src={this.state.blobObject}
-        />*/}
+        />
       </div>
     );
   }
