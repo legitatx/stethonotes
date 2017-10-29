@@ -37,7 +37,26 @@ class Recorder extends Component {
       };
     });
 
-    promise.then(res => console.log(res)).catch(err => console.log(err));
+    promise
+      .then(res => {
+        this.sendRecording(res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  async sendRecording(base64) {
+    try {
+      const res = await fetch('https://api.stethonotes.tech/recording', {
+        method: 'POST',
+        body: JSON.stringify({
+          blob: base64
+        })
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -51,7 +70,7 @@ class Recorder extends Component {
           onStart={this.onStart}
           onStop={this.onStop}
           strokeColor='#fff'
-          mimeType='audio/wav;codecs=opus'
+          mimeType='audio/wav'
         />
         {!this.state.record ? (
           <div className='recorder-btn play' onClick={this.startRecording}>

@@ -1,9 +1,7 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import NavigationIcon from 'material-ui/svg-icons/navigation/menu';
-import FlatButton from 'material-ui/FlatButton';
 import { grey700 } from 'material-ui/styles/colors';
-import { Link } from 'react-router-dom';
 
 const styles = {
   navIcon: {
