@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import UserOverview from './UserOverview';
 import { data } from '../mock.js';
 
 const UserMenuItem = ({ firstName, lastName }) => (
@@ -41,6 +42,9 @@ class App extends Component {
             />
           ))}
         </Drawer>
+        <div>
+          <UserOverview name='Tay Johnson' concern='Headache' />
+        </div>
       </div>
     );
   }
