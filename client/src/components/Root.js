@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Header from './Header';
 import App from './App';
+import Recorder from './Recorder';
 import PatientForm from './PatientForm';
 
 const Root = ({ store }) => (
@@ -11,9 +11,9 @@ const Root = ({ store }) => (
     <MuiThemeProvider>
       <Router>
         <div>
-          <Header />
+          <App />
           <Switch>
-            <Route exact path='/' component={App} />
+            <Route exact path='/' component={Recorder} />
             <Route path='/patient' component={PatientForm} />
           </Switch>
         </div>
